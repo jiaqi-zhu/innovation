@@ -47,15 +47,20 @@ class Agent:
 		c = getattr(self._db, channel)
 		return list(c.find({}, {type_: 1, '_id':0}))[0][type_]
 
+	def get_channel_name_from_freq(self, radio_freq):
+		for channel in self.get_channel_list():
+			if self._db.channel.find({}, {"radio" : radio_freq}):
+				return channel 
 
-if __name__ == '__main__':
-	db = Agent('innovation')
-	# db.add_channel('CBC')
-	# db.delete_channel('CBC')
+# if __name__ == '__main__':
+	# db = Agent('innovation')
+	# print db.get_channel_name_from_freq('88.5FM')
+	# db.add_channel('tsn', tv_channel=62, radio_freq='54.9FM')
+	# db.delete_channel('ABC')
 	# print db.get_channel_list()
-	# db.add_channel_info('CBC', 'radio', '88.5 FM')
-	# print db.get_data_from_collection('CBC')
-	# print db.get_channel('CBC', 'radio')
+	# db.update_channel_info('rds', 'radio', '88.6FM')
+	# print db.get_data_from_collection('rds')
+	# print db.get_channel('cbc', 'radio')
 
 	
 
